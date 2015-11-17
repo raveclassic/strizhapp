@@ -1,0 +1,74 @@
+@import '../../node_modules/material-colors/dist/colors';
+//@import '../../node_modules/materialize-css/sass/components/color';
+@import './mixins';
+
+$font-family: 'Roboto', sans-serif;
+
+//colors
+$white-color: #FFFFFF;
+$black-color: #000000;
+
+$transparent-color: rgba(0, 0, 0, 0);
+$full-black-color: rgba(0, 0, 0, 1);
+$dark-black-color: rgba(0, 0, 0, 0.87);
+$light-black-color: rgba(0, 0, 0, 0.54);
+$min-black-color: rgba(0, 0, 0, 0.26);
+$faint-black-color: rgba(0, 0, 0, 0.12);
+$full-white-color: rgba(255, 255, 255, 1);
+$dark-white-color: rgba(255, 255, 255, 0.87);
+$light-white-color: rgba(255, 255, 255, 0.54);
+
+//palette
+$primary-1-color: $md-cyan-500;
+$primary-2-color: $md-cyan-700;
+$primary-3-color: $light-black-color;
+
+$accent-1-color: $md-pink-200;
+$accent-2-color: $md-grey-100;
+$accent-3-color: $md-grey-500;
+
+$text-color: $dark-black-color;
+$alternate-text-color: $white-color;
+
+$canvas-color: $white-color;
+$border-color: $md-grey-300;
+$disabled-color: transparentize($dark-black-color, .3);
+
+//spacing
+$icon-size: 24px;
+$desktop-gutter: 24px;
+$desktop-gutter-more: 32px;
+$desktop-gutter-less: 16px;
+$desktop-gutter-mini: 8px;
+$desktop-keyline-increment: 64px;
+$desktop-dropdown-menu-item-height: 32px;
+$desktop-dropdown-menu-font-size: 15px;
+$desktop-left-nav-menu-item-height: 48px;
+$desktop-subheader-height: 48px;
+$desktop-toolbar-height: 56px;
+
+//typography
+$text-full-black: $full-black-color;
+$text-dark-black: $dark-black-color;
+$text-light-black: $light-black-color;
+$text-min-black: $min-black-color;
+$text-full-white: $full-white-color;
+$text-dark-white: $dark-white-color;
+$text-light-white: $light-white-color;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 500;
+
+$font-style-button-font-size: 14;
+
+//transitions
+$transition-duration-default: 450ms;
+$transition-easing-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+$transition-easing-in-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+////materialize-css
+//$roboto-font-path: '../../node_modules/materialize-css/font/roboto/';
+//$icons-font-path: '../../node_modules/materialize-css/font/material-design-icons/';
+//$primary-color: $md-light-blue-500;
+//$secondary-color: $md-pink-300;

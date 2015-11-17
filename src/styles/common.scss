@@ -1,0 +1,23 @@
+@import "./config";
+@import "../../node_modules/normalize.css/normalize.css";
+//@import '../../node_modules/materialize-css/sass/materialize';
+
+body,
+html,
+#app {
+	height: 100%;
+}
+
+body {
+	//font-family: $font-family;
+	color: $text-color;
+}
+
+* {
+	box-sizing: border-box;
+	text-rendering: optimizeLegibility;
+}
+
+a, button, img {
+	-webkit-tap-highlight-color: $transparent-color;
+}

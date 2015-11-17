@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "noImplicitAny": true,
+    "jsx": "react",
+    "experimentalDecorators": true
+  },
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.d.ts",
+    "./typings/tsd.d.ts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "externals": [
+      "./typings/tsd.d.ts",
+      "./src/typings/redux-router.d.ts",
+      "./src/typings/history.d.ts",
+      "./src/typings/material-ui.d.ts",
+      "./src/typings/node-waves.d.ts"
+    ]
+  }
+}
