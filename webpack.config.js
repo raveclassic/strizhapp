@@ -27,12 +27,12 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				loader: 'babel?presets[]=es2015&presets[]=react&sourceMap=false'
+				loader: 'babel'
 			},
 			{
 				test: /\.tsx?$/,
 				exclude: /node_modules/,
-				loader: 'babel?presets[]=es2015&presets[]=react&sourceMap=false!awesome-typescript-loader'
+				loader: 'babel!awesome-typescript-loader'
 			},
 			{
 				test: /\.scss$/,
@@ -40,7 +40,8 @@ module.exports = {
 			},
 			{
 				test: /\.ttf|.woff2?|.png|.jpg|.svg|.eot?$/,
-				loader: 'file'
+				loader: 'file',
+				exclude: /node_modules/
 			}
 		]
 	},

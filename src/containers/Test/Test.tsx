@@ -6,7 +6,7 @@ export class Test extends React.Component<any, any> {
 		return (
 			<div>
 				<AppBar title="Feed"/>
-				<RaisedButton label="hi"></RaisedButton>
+				<RaisedButton label="hsassa"></RaisedButton>
 			</div>
 		);
 	}

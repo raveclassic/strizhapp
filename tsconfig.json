@@ -4,7 +4,8 @@
     "target": "es6",
     "noImplicitAny": true,
     "jsx": "react",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+		"sourceMap": false
   },
   "filesGlob": [
     "./src/**/*.ts",
@@ -17,8 +18,7 @@
       "./typings/tsd.d.ts",
       "./src/typings/redux-router.d.ts",
       "./src/typings/history.d.ts",
-      "./src/typings/material-ui.d.ts",
-      "./src/typings/node-waves.d.ts"
+      "./src/typings/material-ui.d.ts"
     ]
   }
 }
