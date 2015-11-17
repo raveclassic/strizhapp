@@ -13,6 +13,9 @@
     "./src/**/*.d.ts",
     "./typings/tsd.d.ts"
   ],
+	"exclude": [
+		"node_modules"
+	],
   "awesomeTypescriptLoaderOptions": {
     "externals": [
       "./typings/tsd.d.ts",
