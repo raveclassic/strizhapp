@@ -1,5 +1,7 @@
 import * as React from 'react';
-import {ThemeWrapper} from 'material-ui';
+import ThemeWrapper = require('material-ui/lib/theme-wrapper');
+import ThemeManager = require('material-ui/lib/styles/theme-manager');
+
 import {theme} from '../../theme/theme';
 import './App.scss';
 
@@ -10,7 +12,7 @@ interface IAppProps {
 export class App extends React.Component<IAppProps, {}> {
 	render() {
 		return (
-			<ThemeWrapper theme={theme}>
+			<ThemeWrapper theme={ThemeManager.getMuiTheme(theme)}>
 				{() => this.props.children}
 			</ThemeWrapper>
 		);

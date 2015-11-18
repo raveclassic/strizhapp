@@ -20,7 +20,7 @@ module.exports = {
 		filename: '[name].js'
 	},
 	resolve: {
-		extensions: ['', '.ts', '.js', '.jsx', '.tsx', '.scss']
+		extensions: ['', '.ts', '.js', '.jsx', '.tsx', '.scss', '.jpg']
 	},
 	module: {
 		loaders: [
@@ -39,8 +39,8 @@ module.exports = {
 				loader: 'style!css!sass'
 			},
 			{
-				test: /\.ttf|.woff2?|.png|.jpg|.svg|.eot?$/,
-				loader: 'file',
+				test: /\.ttf$|\.woff2?$|\.png$|\.jpg$|\.svg$|\.eot$$/,
+				loader: 'file-loader',
 				exclude: /node_modules/
 			}
 		]
