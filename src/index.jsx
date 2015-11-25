@@ -20,3 +20,6 @@ render(
 	</Provider>,
 	document.getElementById('app')
 );
+
+import {User} from './models/User.ts';
+User.findAll().then(console.log.bind(console)).catch(console.error.bind(console));

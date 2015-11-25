@@ -25,6 +25,12 @@
     },
     "material-ui/material-ui.d.ts": {
       "commit": "961b76f37bdfcff459cab9ed9fd3f204f0633d5e"
+    },
+    "js-data/js-data.d.ts": {
+      "commit": "b2d17b5dad042e293e77d09f2a30d281325cb606"
+    },
+    "qs/qs.d.ts": {
+      "commit": "b2d17b5dad042e293e77d09f2a30d281325cb606"
     }
   }
 }

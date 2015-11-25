@@ -21,10 +21,13 @@
     "file-loader": "^0.8.4",
     "history": "^1.13.0",
     "html-webpack-plugin": "^1.6.2",
+    "js-data": "^2.8.2",
+    "js-data-http": "^2.1.2",
     "material-colors": "^1.0.0",
     "material-ui": "^0.13.3",
     "node-sass": "^3.4.1",
     "normalize.css": "^3.0.3",
+    "qs": "^6.0.0",
     "radium": "^0.15.3",
     "react": "^0.14.2",
     "react-addons-create-fragment": "^0.14.2",
@@ -45,7 +48,8 @@
     "tslint": "^2.5.1",
     "typescript": "1.8.0-dev.20151109",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1"
+    "webpack-dev-server": "^1.12.1",
+    "whatwg-fetch": "^0.10.1"
   },
   "devDependencies": {},
   "scripts": {

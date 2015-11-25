@@ -22,7 +22,8 @@
       "./src/typings/redux-router.d.ts",
       "./src/typings/history.d.ts",
       "./src/typings/material-ui.d.ts",
-      "./src/typings/radium.d.ts"
+      "./src/typings/radium.d.ts",
+      "./src/typings/whatwg-fetch.d.ts"
     ]
   }
 }
