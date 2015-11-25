@@ -5,7 +5,7 @@
   "repository": "",
   "main": "index.js",
   "dependencies": {
-    "awesome-typescript-loader": "^0.14.1",
+    "awesome-typescript-loader": "0.14.1",
     "babel-core": "^6.1.2",
     "babel-eslint": "^4.1.4",
     "babel-loader": "^6.2.0",
@@ -43,7 +43,7 @@
     "ts-loader": "^0.6.0",
     "tsd": "^0.6.5",
     "tslint": "^2.5.1",
-    "typescript": "^1.8.0-dev.20151109",
+    "typescript": "1.8.0-dev.20151109",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },

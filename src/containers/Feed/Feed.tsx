@@ -7,7 +7,7 @@ import ActionSearch = require('material-ui/lib/svg-icons/action/search');
 import {FeedItem} from './FeedItem';
 import {theme} from '../../theme/theme';
 
-const devBg = require('./dev-bg.jpg');
+//const devBg = require('./dev-bg.jpg');
 
 const styles:any = {
 	base: {

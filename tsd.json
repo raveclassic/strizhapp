@@ -8,9 +8,6 @@
     "react/react.d.ts": {
       "commit": "961b76f37bdfcff459cab9ed9fd3f204f0633d5e"
     },
-    "react-dom/react-dom.d.ts": {
-      "commit": "35989a3ab4834b8e8b2b56788f1d4fc46a25dc8d"
-    },
     "redux/redux.d.ts": {
       "commit": "35989a3ab4834b8e8b2b56788f1d4fc46a25dc8d"
     },
