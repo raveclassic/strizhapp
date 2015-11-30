@@ -3,23 +3,19 @@ import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRedirect} from 'react-router';
 import {ReduxRouter} from 'redux-router';
+import {Root} from './containers/Root/Root.tsx';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {configureStore} from './store.js';
-const store = configureStore({
+const store = window.store = configureStore({
 	app: {}
 });
 
 import './styles/common.scss';
 
 render(
-	<Provider store={store}>
-		<ReduxRouter/>
-	</Provider>,
+	<Root store={store}/>,
 	document.getElementById('app')
 );
-
-import {User} from './models/User.ts';
-User.findAll().then(console.log.bind(console));

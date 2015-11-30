@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {pushState} from 'redux-router';
+import {connect} from 'react-redux';
 
 import AppBar = require('material-ui/lib/app-bar');
 import IconButton = require('material-ui/lib/icon-button');
@@ -25,6 +27,7 @@ const styles:any = {
 	}
 };
 
+@connect(state => state)
 export class Feed extends React.Component<any, any> {
 	render() {
 		const items = [
@@ -36,7 +39,7 @@ export class Feed extends React.Component<any, any> {
 			'C'
 		];
 		const searchButton = (
-			<IconButton>
+			<IconButton onTouchTap={() => this.onSearchTap()}>
 				<ActionSearch/>
 			</IconButton>
 		);
@@ -51,4 +54,9 @@ export class Feed extends React.Component<any, any> {
 			</div>
 		);
 	}
+
+	onSearchTap() {
+		this.props.dispatch(pushState(null, '/login'));
+		//this.props.dispatch(pushState({}, '/login'));
+	};
 }

@@ -21,3 +21,11 @@ body {
 a, button, img {
 	-webkit-tap-highlight-color: $transparent-color;
 }
+
+input,
+textarea,
+select {
+	&:-webkit-autofill {
+		background-color: transparent !important;
+	}
+}

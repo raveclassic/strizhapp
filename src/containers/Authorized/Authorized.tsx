@@ -9,10 +9,10 @@ interface IAuthorizedProps {
 	children: React.ReactNode;
 	authorized: boolean;
 	location: ILocation;
-	pushState: Function;
+	dispatch: Function;
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 export class Authorized extends React.Component<IAuthorizedProps, {}> {
 	componentWillMount() {
 		this.checkAuthorization(this.props);
@@ -24,7 +24,7 @@ export class Authorized extends React.Component<IAuthorizedProps, {}> {
 
 	checkAuthorization(props:IAuthorizedProps) {
 		if (!props.authorized && props.location.pathname !== '/login') {
-			props.pushState(null, '/login');
+			props.dispatch(pushState(null, '/login'));
 		}
 	}
 
@@ -37,11 +37,5 @@ function mapStateToProps(state:IState) {
 	return {
 		authorized: state.app.authorized,
 		location: state.router.location
-	};
-}
-
-function mapDispatchToProps() {
-	return {
-		pushState: pushState
 	};
 }

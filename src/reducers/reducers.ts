@@ -1,12 +1,13 @@
 import {routerStateReducer} from 'redux-router';
 import {combineReducers} from 'redux';
 import {ActionType, IAction} from '../actions/actions';
-import {IPayloadAuthorize} from '../actions/authorize';
+import {IPayloadSignin} from '../actions/signin';
+import {IPayloadSigninSuccess} from "../actions/signin";
 
 export interface IAppState {
 	authorized?: boolean;
 	login?: string;
-	password?: string;
+	sid?: string;
 }
 
 export interface IState {
@@ -15,12 +16,13 @@ export interface IState {
 }
 
 function app(state:IAppState, action:IAction<any>) {
+	console.log(action);
 	switch (action.type) {
-		case ActionType.AUTHORIZE:
-			const payload = action.payload as IPayloadAuthorize;
+		case ActionType.SIGNIN_SUCCESS:
+			const payload = action.payload as IPayloadSigninSuccess;
 			return Object.assign({}, state, {
 				login: payload.login,
-				password: payload.password,
+				sid: payload.sid,
 				authorized: true
 			});
 		default:
