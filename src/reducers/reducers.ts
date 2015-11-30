@@ -16,7 +16,6 @@ export interface IState {
 }
 
 function app(state:IAppState, action:IAction<any>) {
-	console.log(action);
 	switch (action.type) {
 		case ActionType.SIGNIN_SUCCESS:
 			const payload = action.payload as IPayloadSigninSuccess;

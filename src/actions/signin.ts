@@ -1,5 +1,6 @@
 import {ActionType, IAction, ThunkAction} from './actions';
 import {adapter} from '../api/Adapter';
+import {pushState} from 'redux-router';
 
 export interface IPayloadSigninSuccess {
 	sid: string;
@@ -21,6 +22,9 @@ export interface IPayloadSignin {
 	password: string;
 }
 
-export function signin(login:string, password:string):ThunkAction {
-	return dispatch => dispatch(signinSuccess('sidsfsjdfhauskjf', '43764826734'));
+export function signin(login:string, password:string, redirect:string = '/'):ThunkAction {
+	return dispatch => {
+		dispatch(signinSuccess('sidsfsjdfhauskjf', '43764826734'));
+		dispatch(pushState(null, redirect));
+	};
 }
