@@ -24,7 +24,7 @@ export class Authorized extends React.Component<IAuthorizedProps, {}> {
 
 	checkAuthorization(props:IAuthorizedProps) {
 		if (!props.authorized && props.location.pathname !== '/login') {
-			props.pushState(props.location.state, '/login');
+			props.pushState(null, '/login');
 		}
 	}
 
