@@ -22,4 +22,5 @@ render(
 );
 
 import {User} from './models/User.ts';
-User.findAll().then(console.log.bind(console)).catch(console.error.bind(console));
+User.findAll().then(console.log.bind(console));
+User.find(1).then(console.log.bind(console));

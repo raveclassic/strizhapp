@@ -3,21 +3,34 @@ import DSHttpAdapter = require('js-data-http');
 import qs = require('qs');
 import JSDataPromise = JSData.JSDataPromise;
 import DSHttpAdapterPromiseResolveType = JSData.DSHttpAdapterPromiseResolveType;
+import {IResponse} from "./IResponse";
+import DSHttpAdapterOptions = JSData.DSHttpAdapterOptions;
 require('whatwg-fetch');
 
 export const API_URL = 'https://strizhapi.herokuapp.com/api/v1/';
 
+interface IHTTPOPtions {
+	method: string;
+	params?: Object;
+	suffix?: string;
+	url: string;
+	urlOverride?: boolean;
+}
 
 export class HttpAdapter extends DSHttpAdapter {
-	HTTP(options?:Object):JSDataPromise<DSHttpAdapterPromiseResolveType> {
-		console.log(options);
-		//const {params, url} = options;
-		//if (params) {
-		//	url = buildUrl(url, params);
-		//	delete options['params'];
-		//}
-		//return fetch(options) as any;
-		return Promise.resolve() as any;
+	constructor(options?:DSHttpAdapterOptions) {
+		super(options);
+	}
+	HTTP(options?:IHTTPOPtions):JSDataPromise<DSHttpAdapterPromiseResolveType> {
+		let url = options.url;
+		if (options.params) {
+			url = buildUrl(url, options.params);
+			delete options['params'];
+		}
+		return fetch(url, {
+			method: options.method,
+			credentials: 'include'
+		}).then(response => response.json()) as any;
 	}
 
 	get(url:string, query:any) {
@@ -26,17 +39,27 @@ export class HttpAdapter extends DSHttpAdapter {
 	}
 
 	post(url:string, data:any) {
-		return this.POST(API_URL + url, data).then(deserialize)
+		return this.POST(API_URL + url, data).then(deserialize);
 	}
 
 	put(url:string, data:any) {
-		return this.PUT(API_URL + url, data).then(deserialize)
+		return this.PUT(API_URL + url, data).then(deserialize);
 	}
 
 	del(url:string) {
 		return this.DEL(API_URL + url).then(deserialize);
 	}
 }
+
+export const adapter = new HttpAdapter({
+	deserialize(resourceConfig:any, data:IResponse<any>): any {
+		if (data.data.items) {
+			return data.data.items[resourceConfig.name];
+		} else {
+			return data.data;
+		}
+	}
+});
 
 function deserialize(data:any):any {
 	return data.data.data;
