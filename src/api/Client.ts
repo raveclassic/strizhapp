@@ -1,7 +1,8 @@
 import qs = require('qs');
 import 'whatwg-fetch';
 
-export const API_URL = 'https://strizhapi.herokuapp.com/api/v1/';
+//export const API_URL = 'https://strizhapi.herokuapp.com/api/v1/';
+export const API_URL = 'https://strizhapp-api-nofirg.c9.io/api/v1/';
 
 export interface IRequestOptions {
 	method:HTTPMethod;
@@ -35,8 +36,23 @@ export class Client {
 		};
 		if (options.data) {
 			requestOptions.body = JSON.stringify(options.data);
+			requestOptions.headers = {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			};
 		}
-		return fetch(url, requestOptions).then(response => response.json()) as Promise<T>;
+		return fetch(url, requestOptions)
+			.then(response => {
+				if (response.status >= 200 && response.status < 300) {
+					return response.json();
+				} else {
+					return response.json().then(body => {
+						const error = new Error(JSON.stringify(body));
+						(<any>error)['body'] = body;
+						throw error;
+					});
+				}
+			});
 	}
 
 	get(path:string, query?:Object) {

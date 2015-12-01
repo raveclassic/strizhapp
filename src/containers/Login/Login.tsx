@@ -2,9 +2,10 @@ import React = require('react');
 import {connect} from 'react-redux';
 import TextField = require('material-ui/lib/text-field');
 import FlatButton = require('material-ui/lib/flat-button');
+import Dialog = require('material-ui/lib/dialog');
 import FormEvent = __React.FormEvent;
 
-import {signin} from '../../actions/signin';
+import {signin} from '../../actions/auth';
 import {IAppState} from "../../reducers/reducers";
 
 import {theme} from '../../theme/theme';
@@ -37,24 +38,38 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 	constructor(props:any, context:any) {
 		super(props, context);
 		this.state = {
-			login: this.props.app.login,
+			login: '',
 			password: ''
 		};
 	}
 
 	render() {
+		const processing = this.props.app.auth.processing;
 		return (
 			<div style={styles.base}>
 				<h1 style={styles.title}>Авторизация</h1>
+				{processing && this.renderProcessing()}
+				{!processing && this.renderForm()}
+			</div>
+		);
+	}
+
+	renderProcessing() {
+		return (
+			<div>Авторизация...</div>
+		);
+	}
+
+	renderForm() {
+		return (
+			<div>
 				<div>
-					<div>
-						<TextField floatingLabelText="№ телефона" type="tel" onChange={this.onLoginChange}/>
-					</div>
-					<div>
-						<TextField floatingLabelText="Пароль" type="password" onChange={this.onPasswordChange}/>
-					</div>
-					<FlatButton label="Вход" secondary={true} type="submit" onTouchTap={this.onSubmit}/>
+					<TextField floatingLabelText="№ телефона" type="tel" onChange={this.onLoginChange}/>
 				</div>
+				<div>
+					<TextField floatingLabelText="Пароль" type="password" onChange={this.onPasswordChange}/>
+				</div>
+				<FlatButton label="Вход" secondary={true} type="submit" onTouchTap={this.onSubmit}/>
 			</div>
 		);
 	}

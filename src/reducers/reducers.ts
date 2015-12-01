@@ -1,13 +1,18 @@
 import {routerStateReducer} from 'redux-router';
 import {combineReducers} from 'redux';
 import {ActionType, IAction} from '../actions/actions';
-import {IPayloadSignin} from '../actions/signin';
-import {IPayloadSigninSuccess} from "../actions/signin";
+import {IUser} from "../models/User";
+import {IPayloadGlobalError} from "../actions/app";
+
+export interface IAuthState {
+	user?: IUser;
+	authorized?: boolean;
+	processing?: boolean;
+}
 
 export interface IAppState {
-	authorized?: boolean;
-	login?: string;
-	sid?: string;
+	auth: IAuthState;
+	error?: Object;
 }
 
 export interface IState {
@@ -15,21 +20,36 @@ export interface IState {
 	router?: any;
 }
 
-function app(state:IAppState, action:IAction<any>) {
+function auth(state:IAuthState, action:IAction<any>) {
 	switch (action.type) {
+		case ActionType.SIGNIN:
+			return {
+				processing: true
+			};
 		case ActionType.SIGNIN_SUCCESS:
-			const payload = action.payload as IPayloadSigninSuccess;
-			return Object.assign({}, state, {
-				login: payload.login,
-				sid: payload.sid,
+			return {
 				authorized: true
-			});
+			};
+		case ActionType.SHOW_GLOBAL_ERROR:
+			return {};
 		default:
 			return state || {};
 	}
 }
 
+function error(state:Object, action:IAction<IPayloadGlobalError>) {
+	switch (action.type) {
+		case ActionType.SHOW_GLOBAL_ERROR:
+			return action.payload.error;
+		default:
+			return state || null;
+	}
+}
+
 export const root = combineReducers({
-	app: app,
+	app: combineReducers({
+		auth,
+		error
+	}),
 	router: routerStateReducer
 });

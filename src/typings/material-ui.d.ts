@@ -1,5 +1,13 @@
 import React = __React;
 
+declare namespace __MaterialUI {
+	/*tslint:disable namespace-name*/
+	interface DialogProps {
+		open?: boolean;
+		onRequestClose?: Function;
+	}
+}
+
 declare module 'material-ui' {
 
 }

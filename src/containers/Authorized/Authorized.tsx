@@ -35,7 +35,7 @@ export class Authorized extends React.Component<IAuthorizedProps, {}> {
 
 function mapStateToProps(state:IState) {
 	return {
-		authorized: state.app.authorized,
+		authorized: state.app.auth.authorized,
 		location: state.router.location
 	};
 }
