@@ -9,10 +9,6 @@
       true,
       120
     ],
-    "member-ordering": [
-      true,
-      "public-before-private"
-    ],
     "no-arg": true,
     "no-consecutive-blank-lines": true,
     "no-construct": true,

@@ -7,11 +7,17 @@ import FormEvent = __React.FormEvent;
 import {signin} from '../../actions/signin';
 import {IAppState} from "../../reducers/reducers";
 
+import {theme} from '../../theme/theme';
+
 const styles:any = {
 	base: {
 		textAlign: 'center',
 		display: 'flex',
 		flexDirection: 'column'
+	},
+	title: {
+		color: theme.palette.primary1Color,
+		fontWeight: 500
 	}
 };
 
@@ -39,10 +45,12 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 	render() {
 		return (
 			<div style={styles.base}>
-				<h1>login page</h1>
+				<h1 style={styles.title}>Авторизация</h1>
 				<div>
 					<div>
 						<TextField floatingLabelText="№ телефона" type="tel" onChange={this.onLoginChange}/>
+					</div>
+					<div>
 						<TextField floatingLabelText="Пароль" type="password" onChange={this.onPasswordChange}/>
 					</div>
 					<FlatButton label="Вход" secondary={true} type="submit" onTouchTap={this.onSubmit}/>

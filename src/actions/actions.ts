@@ -1,6 +1,6 @@
 export enum ActionType {
-	SIGNIN,
-	SIGNIN_SUCCESS
+	SIGNIN = <any>'SIGNIN',
+	SIGNIN_SUCCESS = <any>'SIGNIN_SUCCESS'
 }
 
 export interface IAction<T> {
