@@ -6,6 +6,10 @@ declare namespace __MaterialUI {
 		open?: boolean;
 		onRequestClose?: Function;
 	}
+
+	interface LeftNav {
+		toggle: Function;
+	}
 }
 
 declare module 'material-ui' {

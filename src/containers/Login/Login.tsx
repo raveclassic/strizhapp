@@ -62,19 +62,20 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
 	renderForm() {
 		return (
-			<div>
+			<form onSubmit={this.onSubmit}>
 				<div>
 					<TextField floatingLabelText="№ телефона" type="tel" onChange={this.onLoginChange}/>
 				</div>
 				<div>
 					<TextField floatingLabelText="Пароль" type="password" onChange={this.onPasswordChange}/>
 				</div>
-				<FlatButton label="Вход" secondary={true} type="submit" onTouchTap={this.onSubmit}/>
-			</div>
+				<FlatButton label="Вход" secondary={true} type="submit"/>
+			</form>
 		);
 	}
 
 	onSubmit = (e:FormEvent) => {
+		e.preventDefault();
 		const {login, password} = this.state;
 		if (login && password) { //todo: validate
 			this.props.dispatch(signin(login, password));

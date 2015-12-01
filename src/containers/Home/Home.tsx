@@ -13,7 +13,7 @@ interface IAuthorizedProps {
 }
 
 @connect(mapStateToProps)
-export class Authorized extends React.Component<IAuthorizedProps, {}> {
+export class Home extends React.Component<IAuthorizedProps, {}> {
 	componentWillMount() {
 		this.checkAuthorization(this.props);
 	}

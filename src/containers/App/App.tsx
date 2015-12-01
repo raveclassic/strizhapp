@@ -13,37 +13,51 @@ interface IAppProps {
 	children: React.ReactNode;
 	error: Object;
 	dispatch: Function;
+	loaded:boolean;
 }
 
 const styles:any = {
 	errorMessage: {
 		wordBreak: 'break-word'
+	},
+	loading: {
+		textAlign: 'center',
+		paddingTop: '200px'
 	}
 };
 
 @connect(state => {
 	return {
-		error: state.app.error
+		error: state.app.error,
+		loaded: state.app.loaded
 	};
 })
 export class App extends React.Component<IAppProps, {}> {
 	render() {
-		return (
-			<ThemeWrapper theme={ThemeManager.getMuiTheme(theme)}>
-				{() => (
-					<div>
-						{this.props.children}
-						<Dialog open={!!this.props.error}
-						        title="Произошла ошибка!"
-						        onRequestClose={this.onDismiss}>
-							<pre style={styles.errorMessage}>
-								{this.props.error && JSON.stringify(this.props.error, null, 4)}
-							</pre>
-						</Dialog>
-					</div>
-				)}
-			</ThemeWrapper>
-		);
+		switch (this.props.loaded) {
+			case true:
+				return (
+					<ThemeWrapper theme={ThemeManager.getMuiTheme(theme)}>
+						{() => (
+						<div>
+							{this.props.children}
+							<Dialog open={!!this.props.error}
+							        title="Произошла ошибка!"
+							        onRequestClose={this.onDismiss}
+							        actions={[{ text: 'OK' }]}>
+								<pre style={styles.errorMessage}>
+									{this.props.error && JSON.stringify(this.props.error, null, 4)}
+								</pre>
+							</Dialog>
+						</div>
+							)}
+					</ThemeWrapper>
+				);
+			case false:
+				return (
+					<div style={styles.loading}>Загрузка...</div>
+				);
+		}
 	}
 
 	onDismiss = () => {

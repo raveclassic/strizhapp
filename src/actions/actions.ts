@@ -3,7 +3,12 @@ export enum ActionType {
 	SIGNIN_SUCCESS = <any>'SIGNIN_SUCCESS',
 	SIGNIN_ERROR = <any>'SIGNIN_ERROR',
 
-	SHOW_GLOBAL_ERROR = <any>'SHOW_GLOBAL_ERROR'
+	SIGNOUT = <any>'SIGNOUT',
+	SIGNOUT_SUCCESS = <any>'SIGNOUT_SUCCESS',
+
+	SHOW_GLOBAL_ERROR = <any>'SHOW_GLOBAL_ERROR',
+
+	APP_LOADED = <any>'APP_LOADED'
 }
 
 export interface IAction<T> {

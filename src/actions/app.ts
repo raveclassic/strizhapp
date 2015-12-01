@@ -12,3 +12,10 @@ export function showGlobalError(error?:Object) {
 		}
 	};
 }
+
+export function appLoaded() {
+	return {
+		type: ActionType.APP_LOADED,
+		payload: {}
+	};
+}

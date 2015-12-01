@@ -1,7 +1,7 @@
 import {ActionType, IAction, ThunkAction} from './actions';
 import {client} from '../api/Client';
 import {pushState} from 'redux-router';
-import {showGlobalError} from './app';
+import {showGlobalError, appLoaded} from './app';
 import {IResponse} from "../api/IResponse";
 
 export interface IPayloadSigninSuccess {
@@ -32,10 +32,10 @@ export function signinError(error:Object):IAction<IPayloadSigninError> {
 	};
 }
 
-export function signingRequest() {
+export function signingRequest():IAction<void> {
 	return {
 		type: ActionType.SIGNIN,
-		payload: {}
+		payload: void 0
 	};
 }
 
@@ -56,6 +56,51 @@ export function signin(login:string, password:string, redirect:string = '/'):Thu
 			.then((response:IResponse<any>) => {
 				dispatch(signinSuccess(response.data.sid, login));
 				dispatch(pushState(null, redirect));
+			})
+			.catch(error => {
+				dispatch(showGlobalError(error));
+			});
+	};
+}
+
+export function checkAuth():ThunkAction {
+	return dispatch => {
+		return client.get('auth')
+			.then((response:IResponse<any>) => {
+				if (response.data.sid) {
+					dispatch(signinSuccess(response.data.sid, ''));
+					dispatch(pushState(null, '/'));
+				}
+			})
+			.catch(error => {
+				dispatch(showGlobalError(error));
+			})
+			.then(() => {
+				dispatch(appLoaded());
+			});
+	};
+}
+
+export function signoutSuccess():IAction<void> {
+	return {
+		type: ActionType.SIGNOUT_SUCCESS,
+		payload: void 0
+	};
+}
+
+export function signoutRequest():IAction<void> {
+	return {
+		type: ActionType.SIGNOUT,
+		payload: void 0
+	};
+}
+
+export function signout():ThunkAction {
+	return dispatch => {
+		return client.del('auth')
+			.then(() => {
+				dispatch(signoutSuccess());
+				dispatch(pushState(null, '/'));
 			})
 			.catch(error => {
 				dispatch(showGlobalError(error));

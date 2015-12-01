@@ -46,9 +46,19 @@ function error(state:Object, action:IAction<IPayloadGlobalError>) {
 	}
 }
 
+function loaded(loaded:boolean, action:IAction<void>) {
+	switch (action.type) {
+		case ActionType.APP_LOADED:
+			return true;
+		default:
+			return loaded || false;
+	}
+}
+
 export const root = combineReducers({
 	app: combineReducers({
 		auth,
+		loaded,
 		error
 	}),
 	router: routerStateReducer

@@ -79,7 +79,7 @@ export class Client {
 		});
 	}
 
-	['delete'](path:string) {
+	del(path:string) {
 		return this.request({
 			method: HTTPMethod.DELETE,
 			url: path
