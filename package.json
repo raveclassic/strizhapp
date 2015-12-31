@@ -59,7 +59,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "postinstall": "tsd install",
+    "postinstall": "tsd install && npm run build",
     "build": "webpack --progress --colors",
     "start": "webpack-dev-server --inline --progress --colors --display-error-details --display-chunks",
     "tsd": "tsd"

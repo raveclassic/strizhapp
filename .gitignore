@@ -53,4 +53,5 @@ typings
 !src/typings
 plugins
 platforms
+www/**/*
 npm-debug.log
