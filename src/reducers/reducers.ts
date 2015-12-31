@@ -4,6 +4,10 @@ import {ActionType, IAction} from '../actions/actions';
 import {IUser} from "../models/User";
 import {IPayloadGlobalError} from "../actions/app";
 
+export interface IUIState {
+	isLeftNavOpen?: boolean;
+}
+
 export interface IAuthState {
 	user?: IUser;
 	authorized?: boolean;
@@ -18,17 +22,23 @@ export interface IAppState {
 export interface IState {
 	app: IAppState;
 	router?: any;
+	ui: IUIState;
 }
 
 function auth(state:IAuthState, action:IAction<any>) {
 	switch (action.type) {
 		case ActionType.SIGNIN:
+		case ActionType.SIGNOUT:
 			return {
 				processing: true
 			};
 		case ActionType.SIGNIN_SUCCESS:
 			return {
 				authorized: true
+			};
+		case ActionType.SIGNOUT_SUCCESS:
+			return {
+				authorized: false
 			};
 		case ActionType.SHOW_GLOBAL_ERROR:
 			return {};
@@ -55,11 +65,23 @@ function loaded(loaded:boolean, action:IAction<void>) {
 	}
 }
 
+function isLeftNavOpen(open:boolean, action:IAction<boolean>) {
+	switch (action.type) {
+		case ActionType.TOGGLE_LEFT_NAV:
+			return typeof action.payload === 'undefined' ? !open : action.payload;
+		default:
+			return open || false;
+	}
+}
+
 export const root = combineReducers({
 	app: combineReducers({
 		auth,
 		loaded,
 		error
 	}),
-	router: routerStateReducer
+	router: routerStateReducer,
+	ui: combineReducers({
+		isLeftNavOpen
+	})
 });

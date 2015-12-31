@@ -1,12 +1,12 @@
 {
   "version": "v4",
-  "repo": "borisyankov/DefinitelyTyped",
+  "repo": "raveclassic/DefinitelyTyped",
   "ref": "master",
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "react/react.d.ts": {
-      "commit": "066f6bb14aea78d84a133e8cae79deb54bacf901"
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
     },
     "redux/redux.d.ts": {
       "commit": "fb2b3b1e068c9ff7d8f9b0851c08d37d96c95c38"
@@ -36,7 +36,7 @@
       "commit": "fb2b3b1e068c9ff7d8f9b0851c08d37d96c95c38"
     },
     "material-ui/material-ui.d.ts": {
-      "commit": "066f6bb14aea78d84a133e8cae79deb54bacf901"
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
     }
   }
 }

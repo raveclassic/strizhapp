@@ -67,7 +67,7 @@ export function checkAuth():ThunkAction {
 	return dispatch => {
 		return client.get('auth')
 			.then((response:IResponse<any>) => {
-				if (response.data.sid) {
+				if (response.data.sid && response.data.user_id) {
 					dispatch(signinSuccess(response.data.sid, ''));
 					dispatch(pushState(null, '/'));
 				}
@@ -100,7 +100,7 @@ export function signout():ThunkAction {
 		return client.del('auth')
 			.then(() => {
 				dispatch(signoutSuccess());
-				dispatch(pushState(null, '/'));
+				dispatch(pushState(null, '/login'));
 			})
 			.catch(error => {
 				dispatch(showGlobalError(error));

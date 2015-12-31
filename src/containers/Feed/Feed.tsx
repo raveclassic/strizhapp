@@ -6,11 +6,11 @@ import {connect} from 'react-redux';
 import AppBar = require('material-ui/lib/app-bar');
 import IconButton = require('material-ui/lib/icon-button');
 import ActionSearch = require('material-ui/lib/svg-icons/action/search');
-import LeftNav = require('material-ui/lib/left-nav');
-import MenuItem = require('material-ui/lib/menu/menu-item');
 
 import {FeedItem} from './FeedItem';
 import {theme} from '../../theme/theme';
+
+import {toggleLeftNav} from '../../actions/ui';
 
 //const devBg = require('./dev-bg.jpg');
 
@@ -30,29 +30,16 @@ const styles:any = {
 	}
 };
 
-const menuItems = [
-	{
-		text: 'Лента'
-	},
-	{
-		text: 'Диалоги'
-	},
-	{
-		text: 'Темы'
-	},
-	{
-		text: 'Профиль'
-	},
-	{
-		text: 'Выход',
-		onItemTouchTap() {
-			console.log('hi');
-		}
-	}
-];
+interface IFeedState {
+	navOpen: boolean;
+}
 
 @connect(state => state)
 export class Feed extends React.Component<any, any> {
+	state = {
+		navOpen: false
+	};
+
 	render() {
 		const items = [
 			'A',
@@ -69,7 +56,6 @@ export class Feed extends React.Component<any, any> {
 		);
 		return (
 			<div style={styles.base}>
-				<LeftNav docked={false} ref="leftNav" menuItems={menuItems} onChange={this.onLeftNavChange}/>
 				<AppBar title="Лента"
 				        style={styles.appBar}
 				        iconElementRight={searchButton}
@@ -82,11 +68,6 @@ export class Feed extends React.Component<any, any> {
 	}
 
 	onLeftIconButtonTouchTap = () => {
-		const leftNav = this.refs['leftNav'] as LeftNav;
-		leftNav.toggle();
-	};
-
-	onLeftNavChange = (e:any) => {
-		console.log('hi', e.target);
+		this.props.dispatch(toggleLeftNav());
 	};
 }

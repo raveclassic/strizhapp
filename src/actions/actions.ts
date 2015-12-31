@@ -8,7 +8,9 @@ export enum ActionType {
 
 	SHOW_GLOBAL_ERROR = <any>'SHOW_GLOBAL_ERROR',
 
-	APP_LOADED = <any>'APP_LOADED'
+	APP_LOADED = <any>'APP_LOADED',
+
+	TOGGLE_LEFT_NAV = <any>'TOGGLE_LEFT_NAV'
 }
 
 export interface IAction<T> {

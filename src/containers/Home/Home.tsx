@@ -5,11 +5,18 @@ import {pushState} from 'redux-router';
 import {IAppState} from "../../reducers/reducers";
 import {ILocation} from "redux-router";
 
+import LeftNav = require('material-ui/lib/left-nav');
+import MenuItem = require('material-ui/lib/menus/menu-item');
+
+import {toggleLeftNav} from '../../actions/ui';
+import {signout} from "../../actions/auth";
+
 interface IAuthorizedProps {
 	children: React.ReactNode;
 	authorized: boolean;
 	location: ILocation;
 	dispatch: Function;
+	isLeftNavOpen: boolean;
 }
 
 @connect(mapStateToProps)
@@ -29,13 +36,35 @@ export class Home extends React.Component<IAuthorizedProps, {}> {
 	}
 
 	render() {
-		return this.props.children as any;
+		return (
+			<div>
+				<LeftNav docked={false}
+				         open={this.props.isLeftNavOpen}
+				         onRequestChange={this.onLeftNavRequestChange}>
+					<MenuItem>Лента</MenuItem>
+					<MenuItem>Темы</MenuItem>
+					<MenuItem>Профиль</MenuItem>
+					<MenuItem onTouchTap={this.onSignoutClick}>Выход</MenuItem>
+				</LeftNav>
+				{this.props.children}
+			</div>
+		);
 	}
+
+	onSignoutClick = (e:any) => {
+		this.props.dispatch(toggleLeftNav(false));
+		this.props.dispatch(signout());
+	};
+
+	onLeftNavRequestChange = (open:boolean) => {
+		this.props.dispatch(toggleLeftNav(open));
+	};
 }
 
 function mapStateToProps(state:IState) {
 	return {
 		authorized: state.app.auth.authorized,
-		location: state.router.location
+		location: state.router.location,
+		isLeftNavOpen: state.ui.isLeftNavOpen
 	};
 }

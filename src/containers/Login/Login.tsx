@@ -35,13 +35,10 @@ interface ILoginState {
 
 @connect(state => state)
 export class Login extends React.Component<ILoginProps, ILoginState> {
-	constructor(props:any, context:any) {
-		super(props, context);
-		this.state = {
-			login: '',
-			password: ''
-		};
-	}
+	state = {
+		login: '',
+		password: ''
+	};
 
 	render() {
 		const processing = this.props.app.auth.processing;

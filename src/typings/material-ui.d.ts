@@ -2,13 +2,24 @@ import React = __React;
 
 declare namespace __MaterialUI {
 	/*tslint:disable namespace-name*/
-	interface DialogProps {
-		open?: boolean;
-		onRequestClose?: Function;
-	}
+	//interface DialogProps {
+	//	open?: boolean;
+	//	onRequestClose?: Function;
+	//}
 
 	interface LeftNav {
 		toggle: Function;
+	}
+
+	interface LeftNavProps extends React.Props<LeftNav> {
+		open?: boolean;
+		onRequestChange?: (e:any) => void;
+	}
+
+	namespace Menus {
+		interface MenuItemProps {
+			onTouchTap?:  (e:TouchTapEvent) => void;
+		}
 	}
 }
 

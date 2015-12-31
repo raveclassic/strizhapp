@@ -12,7 +12,8 @@ module.exports = {
 			'react-redux',
 			'history',
 			'react-tap-event-plugin',
-			'material-ui'
+			'material-ui',
+			'babel-polyfill'
 		]
 	},
 	output: {

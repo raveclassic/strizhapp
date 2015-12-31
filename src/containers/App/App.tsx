@@ -3,6 +3,7 @@ import ThemeWrapper = require('material-ui/lib/theme-wrapper');
 import ThemeManager = require('material-ui/lib/styles/theme-manager');
 import {connect} from 'react-redux';
 import Dialog = require('material-ui/lib/dialog');
+import RaisedButton = require('material-ui/lib/raised-button');
 
 import {showGlobalError} from '../../actions/app';
 
@@ -36,21 +37,22 @@ export class App extends React.Component<IAppProps, {}> {
 	render() {
 		switch (this.props.loaded) {
 			case true:
+				const errorDialogButton = (
+					<RaisedButton label="OK" onTouchTap={this.onDismiss}/>
+				);
 				return (
 					<ThemeWrapper theme={ThemeManager.getMuiTheme(theme)}>
-						{() => (
 						<div>
 							{this.props.children}
 							<Dialog open={!!this.props.error}
 							        title="Произошла ошибка!"
 							        onRequestClose={this.onDismiss}
-							        actions={[{ text: 'OK' }]}>
+							        actions={[errorDialogButton]}>
 								<pre style={styles.errorMessage}>
 									{this.props.error && JSON.stringify(this.props.error, null, 4)}
 								</pre>
 							</Dialog>
 						</div>
-							)}
 					</ThemeWrapper>
 				);
 			case false:
