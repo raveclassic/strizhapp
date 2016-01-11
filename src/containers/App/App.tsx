@@ -19,6 +19,9 @@ interface IAppProps {
 }
 
 const styles:any = {
+	base: {
+		height: '100%'
+	},
 	errorMessage: {
 		wordBreak: 'break-word'
 	},
@@ -39,34 +42,39 @@ const styles:any = {
 	};
 })
 export class App extends React.Component<IAppProps, {}> {
+	renderLoading() {
+		return (
+			<div style={styles.loading}>
+				<CircularProgress mode="indeterminate" color={theme.palette.accent2Color}/>
+			</div>
+		);
+	}
+
+	renderLoaded() {
+		const errorDialogButton = (
+			<RaisedButton label="OK" onTouchTap={this.onDismiss}/>
+		);
+		return (
+			<div style={styles.base}>
+				{this.props.children}
+				<Dialog open={!!this.props.error}
+				        title="Произошла ошибка!"
+				        onRequestClose={this.onDismiss}
+				        actions={[errorDialogButton]}>
+					<pre style={styles.errorMessage}>
+						{this.props.error && JSON.stringify(this.props.error, null, 4)}
+					</pre>
+				</Dialog>
+			</div>
+		);
+	}
+
 	render() {
-		switch (this.props.loaded) {
-			case true:
-				const errorDialogButton = (
-					<RaisedButton label="OK" onTouchTap={this.onDismiss}/>
-				);
-				return (
-					<ThemeWrapper theme={ThemeManager.getMuiTheme(theme)}>
-						<div>
-							{this.props.children}
-							<Dialog open={!!this.props.error}
-							        title="Произошла ошибка!"
-							        onRequestClose={this.onDismiss}
-							        actions={[errorDialogButton]}>
-								<pre style={styles.errorMessage}>
-									{this.props.error && JSON.stringify(this.props.error, null, 4)}
-								</pre>
-							</Dialog>
-						</div>
-					</ThemeWrapper>
-				);
-			case false:
-				return (
-					<div style={styles.loading}>
-						<CircularProgress mode="indeterminate" color={theme.palette.accent2Color}/>
-					</div>
-				);
-		}
+		return (
+			<ThemeWrapper theme={ThemeManager.getMuiTheme(theme)}>
+				{this.props.loaded ? this.renderLoaded() : this.renderLoading()}
+			</ThemeWrapper>
+		);
 	}
 
 	onDismiss = () => {

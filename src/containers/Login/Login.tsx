@@ -1,23 +1,31 @@
 import React = require('react');
 import {connect} from 'react-redux';
-import TextField = require('material-ui/lib/text-field');
+import {FormsyText} from 'formsy-material-ui';
 import FlatButton = require('material-ui/lib/flat-button');
+
 import Dialog = require('material-ui/lib/dialog');
 import FormEvent = __React.FormEvent;
+
+import {LoginForm} from './LoginForm';
 
 import {signin} from '../../actions/auth';
 import {IAppState} from "../../reducers/reducers";
 
 import {theme} from '../../theme/theme';
+import {reduxForm} from "redux-form";
+import {ILoginFormValues} from "./LoginForm";
 
 const styles:any = {
 	base: {
 		textAlign: 'center',
+		backgroundColor: theme.palette.primary1Color,
 		display: 'flex',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		height: '100%',
+		justifyContent: 'center'
 	},
 	title: {
-		color: theme.palette.primary1Color,
+		color: theme.palette.accent2Color,
 		fontWeight: 500
 	}
 };
@@ -35,16 +43,11 @@ interface ILoginState {
 
 @connect(state => state)
 export class Login extends React.Component<ILoginProps, ILoginState> {
-	state = {
-		login: '',
-		password: ''
-	};
-
 	render() {
 		const processing = this.props.app.auth.processing;
 		return (
 			<div style={styles.base}>
-				<h1 style={styles.title}>Авторизация</h1>
+				<h1 style={styles.title}>Вход</h1>
 				{processing && this.renderProcessing()}
 				{!processing && this.renderForm()}
 			</div>
@@ -59,37 +62,11 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
 	renderForm() {
 		return (
-			<form onSubmit={this.onSubmit}>
-				<div>
-					<TextField floatingLabelText="№ телефона" type="tel" onChange={this.onLoginChange}/>
-				</div>
-				<div>
-					<TextField floatingLabelText="Пароль" type="password" onChange={this.onPasswordChange}/>
-				</div>
-				<FlatButton label="Вход" secondary={true} type="submit"/>
-			</form>
+			<LoginForm onSubmit={this.onSubmit}/>
 		);
 	}
 
-	onSubmit = (e:FormEvent) => {
-		e.preventDefault();
-		const {login, password} = this.state;
-		if (login && password) { //todo: validate
-			this.props.dispatch(signin(login, password));
-		}
-	};
-
-	onLoginChange = (e:FormEvent) => {
-		const target = e.target as HTMLInputElement;
-		this.setState({
-			login: target.value
-		});
-	};
-
-	onPasswordChange = (e:FormEvent) => {
-		const target = e.target as HTMLInputElement;
-		this.setState({
-			password: target.value
-		});
+	onSubmit = (data:ILoginFormValues) => {
+		this.props.dispatch(signin(data.phone, data.password));
 	};
 }

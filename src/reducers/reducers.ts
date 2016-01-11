@@ -3,6 +3,7 @@ import {combineReducers} from 'redux';
 import {ActionType, IAction} from '../actions/actions';
 import {IUser} from "../models/User";
 import {IPayloadGlobalError} from "../actions/app";
+import {reducer as formReducer} from 'redux-form';
 
 export interface IUIState {
 	isLeftNavOpen?: boolean;
@@ -83,5 +84,6 @@ export const root = combineReducers({
 	router: routerStateReducer,
 	ui: combineReducers({
 		isLeftNavOpen
-	})
+	}),
+	form: formReducer
 });

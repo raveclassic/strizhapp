@@ -25,7 +25,10 @@
       "./src/typings/radium.d.ts",
       "./src/typings/whatwg-fetch.d.ts",
       "./src/typings/js-data-localstorage.d.ts",
-      "./src/typings/js-data-http.d.ts"
+      "./src/typings/js-data-http.d.ts",
+      "./src/typings/formsy-react.d.ts",
+      "./src/typings/formsy-material-ui.d.ts",
+      "./src/typings/redux-form.d.ts"
     ]
   }
 }
