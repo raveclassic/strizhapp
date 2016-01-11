@@ -41,8 +41,7 @@ module.exports = {
 			},
 			{
 				test: /\.ttf$|\.woff2?$|\.png$|\.jpg$|\.svg$|\.eot$$/,
-				loader: 'file-loader',
-				exclude: /node_modules/
+				loader: 'file-loader'
 			}
 		]
 	},

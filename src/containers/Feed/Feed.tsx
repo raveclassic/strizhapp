@@ -5,7 +5,8 @@ import {connect} from 'react-redux';
 
 import AppBar = require('material-ui/lib/app-bar');
 import IconButton = require('material-ui/lib/icon-button');
-import ActionSearch = require('material-ui/lib/svg-icons/action/search');
+import FontIcon = require('material-ui/lib/font-icon');
+import FloatingActionButton = require('material-ui/lib/floating-action-button');
 
 import {FeedItem} from './FeedItem';
 import {theme} from '../../theme/theme';
@@ -21,6 +22,11 @@ const styles:any = {
 		//backgroundPositionY: '-8px',
 		//maxWidth: '320px',
 		WebkitOverflowScrolling: 'touch'
+	},
+	addButton: {
+		position: 'absolute',
+		bottom: '30px',
+		right: '30px'
 	},
 	appBar: {
 		position: 'fixed'
@@ -51,7 +57,7 @@ export class Feed extends React.Component<any, any> {
 		];
 		const searchButton = (
 			<IconButton>
-				<ActionSearch/>
+				<FontIcon className="material-icons">search</FontIcon>
 			</IconButton>
 		);
 		return (
@@ -63,6 +69,9 @@ export class Feed extends React.Component<any, any> {
 				<div style={styles.list}>
 					{items.map((item, i) => <FeedItem key={i} highlight={!!(i % 2)}/>)}
 				</div>
+				<FloatingActionButton style={styles.addButton} secondary={true}>
+					<FontIcon className="material-icons">add</FontIcon>
+				</FloatingActionButton>
 			</div>
 		);
 	}

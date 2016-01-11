@@ -4,6 +4,7 @@ import ThemeManager = require('material-ui/lib/styles/theme-manager');
 import {connect} from 'react-redux';
 import Dialog = require('material-ui/lib/dialog');
 import RaisedButton = require('material-ui/lib/raised-button');
+import CircularProgress = require('material-ui/lib/circular-progress');
 
 import {showGlobalError} from '../../actions/app';
 
@@ -22,8 +23,12 @@ const styles:any = {
 		wordBreak: 'break-word'
 	},
 	loading: {
-		textAlign: 'center',
-		paddingTop: '200px'
+		backgroundColor: theme.palette.primary1Color,
+		position: 'relative',
+		height: '100%',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 };
 
@@ -57,7 +62,9 @@ export class App extends React.Component<IAppProps, {}> {
 				);
 			case false:
 				return (
-					<div style={styles.loading}>Загрузка...</div>
+					<div style={styles.loading}>
+						<CircularProgress mode="indeterminate" color={theme.palette.accent2Color}/>
+					</div>
 				);
 		}
 	}
